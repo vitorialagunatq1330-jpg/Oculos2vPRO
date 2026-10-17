@@ -21,9 +21,7 @@ section{padding:60px 0}
 .center{text-align:center}
 .lead{color:var(--mute);max-width:40em}
 .center .lead{margin:0 auto}
-.bar{background:var(--go);color:#fff;text-align:center;font-weight:800;padding:14px 12px;letter-spacing:.01em}
-.bar .b1{font:800 clamp(20px,4.8vw,32px)/1.15 var(--display)}
-.bar .b2{font-size:clamp(15px,3.4vw,20px);margin-top:5px}
+.bar{background:var(--go);color:#fff;text-align:center;font-weight:800;font-size:clamp(20px,5.2vw,32px);line-height:1.15;padding:16px 12px;letter-spacing:.01em}
 .hero{background:linear-gradient(160deg,#071a33 0%,#0b2f5c 55%,#0d4a8a 100%);color:#fff;padding:44px 0 56px}
 .hero .wrap{display:grid;gap:30px;align-items:center}
 @media(min-width:820px){.hero .wrap{grid-template-columns:1.05fr .95fr}}
@@ -44,7 +42,8 @@ section{padding:60px 0}
 .dark .lead{color:#b9cde0}
 .rseal{display:grid;place-items:center;text-align:center;border-radius:50%;width:128px;height:128px;flex:none;font:800 15px/1.1 var(--display);border:4px solid #fff;box-shadow:0 6px 16px rgba(0,0,0,.25)}
 .rseal b{display:block;font-size:44px;line-height:1}
-.gseal{background:linear-gradient(135deg,#ffb800,#ff7a00);color:#3a2300;margin:0 auto 16px}
+.gsvg{width:200px;height:200px;margin:0 auto;position:relative;z-index:1}
+.ribbon{display:inline-block;position:relative;z-index:2;margin:-22px auto 18px;background:linear-gradient(135deg,#ffe27a,#ff9a00);color:#3a2300;font:800 18px var(--display);letter-spacing:.03em;padding:10px 40px;clip-path:polygon(0 0,100% 0,calc(100% - 16px) 50%,100% 100%,0 100%,16px 50%)}
 .eseal{background:linear-gradient(135deg,#19c3d6,#0d8fb0);color:#fff}
 .expert{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap;background:var(--soft);border-radius:20px;padding:24px;max-width:760px;margin:0 auto;text-align:left}
 .alert{background:var(--warn);border:3px solid #ffb800;border-left-width:10px;border-radius:18px;padding:22px 24px;color:#4a3a00;text-align:left;margin:0 auto 38px;max-width:760px}
@@ -229,7 +228,20 @@ footer a{color:#fff}
 <section style="padding:20px 0 60px">
   <div class="wrap">
     <div class="guar center">
-      <div class="rseal gseal" id="gseal"></div>
+      <svg class="gsvg" viewBox="0 0 200 200" role="img" aria-label="7 dias de garantia">
+        <defs>
+          <linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe27a"/><stop offset=".5" stop-color="#ffb000"/><stop offset="1" stop-color="#ff7a00"/></linearGradient>
+          <filter id="gsh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000" flood-opacity=".45"/></filter>
+        </defs>
+        <polygon points="100.0,3.0 111.5,12.8 125.1,6.3 133.7,18.7 148.5,16.0 153.6,30.2 168.6,31.4 169.8,46.4 184.0,51.5 181.3,66.3 193.7,74.9 187.2,88.5 197.0,100.0 187.2,111.5 193.7,125.1 181.3,133.7 184.0,148.5 169.8,153.6 168.6,168.6 153.6,169.8 148.5,184.0 133.7,181.3 125.1,193.7 111.5,187.2 100.0,197.0 88.5,187.2 74.9,193.7 66.3,181.3 51.5,184.0 46.4,169.8 31.4,168.6 30.2,153.6 16.0,148.5 18.7,133.7 6.3,125.1 12.8,111.5 3.0,100.0 12.8,88.5 6.3,74.9 18.7,66.3 16.0,51.5 30.2,46.4 31.4,31.4 46.4,30.2 51.5,16.0 66.3,18.7 74.9,6.3 88.5,12.8" fill="url(#gg)" filter="url(#gsh)"/>
+        <circle cx="100" cy="100" r="76" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 5" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="70" fill="#0b2f5c" stroke="#ffd54a" stroke-width="3"/>
+        <text x="100" y="52" text-anchor="middle" font-size="14" fill="#ffd54a" letter-spacing="3">★★★</text>
+        <text x="100" y="116" text-anchor="middle" font-size="76" font-weight="800" fill="#ffd54a" font-family="Bricolage Grotesque,Arial Black,Arial,sans-serif">7</text>
+        <text x="100" y="138" text-anchor="middle" font-size="17" font-weight="800" fill="#fff" font-family="Bricolage Grotesque,Arial,sans-serif" letter-spacing="1">DIAS DE</text>
+        <text x="100" y="157" text-anchor="middle" font-size="19" font-weight="800" fill="#fff" font-family="Bricolage Grotesque,Arial,sans-serif" letter-spacing="1">GARANTIA</text>
+      </svg>
+      <div class="ribbon">SATISFAÇÃO GARANTIDA</div>
       <h2 id="guarTitle"></h2>
       <p class="lead" id="guarText"></p>
     </div>
@@ -259,7 +271,6 @@ footer a{color:#fff}
    ===================================================================== */
 const CONFIG = {
   // --- Textos principais ---
-  tituloFaixa: "PROTEJA O SEU BEM MAIS PRECIOSO, A SUA VISÃO!",
   faixaTopo: "🚚 Pague só quando receber · Frete grátis",
   selo: "<b>Sem pagar nada agora.</b> Você paga ao entregador.",
   titulo: "CHEGA DE FORÇAR A VISTA! CONHEÇA O 2V PRO: O ÓCULOS QUE VAI TRAZER MAIS CONFORTO PARA SUA ROTINA!",
@@ -295,7 +306,7 @@ const CONFIG = {
 
   // --- Mídias (troque pelos arquivos do seu projeto, ex.: "/foto1.jpg") ---
   imagemHero: "/20251103-193131prok2d1x.png",
-  tituloMidia: "Cuide da sua visão no dia a dia",
+  tituloMidia: "PROTEJA O SEU BEM MAIS PRECIOSO, A SUA VISÃO!",
   midias: [
     "https://oculos-inteligente.online/wp-content/uploads/2025/12/ezgif-com-gif-maker-1.gif",
     "https://oculos-inteligente.online/wp-content/uploads/2025/12/Screenshot_6_480x480.webp"
@@ -360,7 +371,6 @@ const CONFIG = {
   ],
 
   // --- Garantia e perguntas ---
-  seloGarantia: "<b>7</b>DIAS DE<br>GARANTIA",
   tituloGarantia: "Satisfação garantida ou seu dinheiro de volta!",
   textoGarantia: "Se por algum motivo achar que o produto não é para você, basta cancelar a compra em até 7 dias após receber e devolveremos todo o valor pago, sem perguntas e sem burocracia! O produto também tem garantia contra defeito de fábrica.",
   perguntas: [
@@ -390,7 +400,7 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt = v => CONFIG.moeda + " " + v.toFixed(2).replace(".", ",");
 
-$("topbar").innerHTML = '<div class="b1">' + esc(CONFIG.tituloFaixa) + '</div><div class="b2">' + esc(CONFIG.faixaTopo) + "</div>";
+$("topbar").textContent = CONFIG.faixaTopo;
 $("stamp").innerHTML = CONFIG.selo;
 $("headline").textContent = CONFIG.titulo;
 $("subheadline").textContent = CONFIG.subtitulo;
@@ -460,7 +470,6 @@ $("alertList").innerHTML = CONFIG.listaAtencao.map(t => "<li>" + esc(t) + "</li>
 $("alertNote").textContent = CONFIG.notaAtencao;
 if (CONFIG.avisoPromo) { $("alertPromo").textContent = CONFIG.avisoPromo; $("alertPromo").hidden = false; }
 
-$("gseal").innerHTML = CONFIG.seloGarantia;
 if (CONFIG.especialista.texto) {
   $("eseal").innerHTML = CONFIG.especialista.selo;
   $("eTitle").textContent = CONFIG.especialista.titulo;
