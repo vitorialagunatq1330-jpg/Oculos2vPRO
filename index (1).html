@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Óculos Inteligente | Pague só na entrega</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0b1f3a;--cy:#19c3d6;--go:#16a34a;--goD:#0e7a35;--soft:#eef6f8;--line:#d3e3e8;--mute:#47607a;--warn:#fff4d6;
+--display:"Bricolage Grotesque","Arial Black",Arial,sans-serif;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);line-height:1.55;font-size:18px;padding-bottom:80px;background:#fff}
+img,video{max-width:100%;display:block}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--display);line-height:1.1;letter-spacing:-.02em}
+h2{font-size:clamp(28px,5vw,40px);font-weight:800;margin-bottom:10px}
+section{padding:60px 0}
+.center{text-align:center}
+.lead{color:var(--mute);max-width:40em}
+.center .lead{margin:0 auto}
+.bar{background:var(--go);color:#fff;text-align:center;font-weight:800;font-size:15px;padding:10px 12px;letter-spacing:.01em}
+.hero{background:linear-gradient(180deg,var(--soft),#fff);padding:40px 0 52px}
+.hero .wrap{display:grid;gap:30px;align-items:center}
+@media(min-width:820px){.hero .wrap{grid-template-columns:1.05fr .95fr}}
+.hero h1{font-size:clamp(34px,7vw,58px);font-weight:800}
+.hero p.sub{font-size:19px;margin:16px 0 22px;color:var(--mute)}
+.stamp{display:inline-block;background:var(--ink);color:#fff;border-radius:12px;padding:10px 16px;font-weight:700;margin-bottom:18px}
+.stamp b{color:var(--cy)}
+.btn{display:inline-block;background:var(--go);color:#fff;font:800 19px var(--body);text-decoration:none;text-align:center;border:0;border-radius:14px;padding:18px 30px;cursor:pointer;box-shadow:0 5px 0 var(--goD);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--goD)}
+.btn:focus-visible,summary:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.btn small{display:block;font:600 13px var(--body);opacity:.92;margin-top:2px}
+.ticks{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;font-weight:600;font-size:15px}
+.heroimg{border-radius:26px;overflow:hidden;border:4px solid var(--ink);background:#fff}
+.heroimg img{width:100%;aspect-ratio:1;object-fit:cover}
+.cod{background:var(--ink);color:#fff}
+.cod h2{color:#fff}
+.cod .lead{color:#b9cde0}
+.steps{display:grid;gap:14px;margin-top:26px;counter-reset:s}
+@media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{border:2px solid #264766;border-radius:18px;padding:22px;counter-increment:s}
+.step::before{content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--cy);color:var(--ink);font:800 19px var(--display);margin-bottom:10px}
+.step h3{font-size:20px;margin-bottom:4px}
+.step p{color:#b9cde0}
+.note{background:var(--warn);color:#4a3a00;border-radius:14px;padding:16px 18px;margin-top:22px;font-size:15px}
+.feats{display:grid;gap:14px;margin-top:26px;text-align:left}
+@media(min-width:760px){.feats{grid-template-columns:repeat(3,1fr)}}
+.feat{background:var(--soft);border-radius:18px;padding:22px}
+.feat .ic{font-size:32px;line-height:1;margin-bottom:8px}
+.feat h3{font-size:20px;margin-bottom:4px}
+.feat p{color:var(--mute);font-size:16px}
+.expect{margin-top:22px;border:2px solid var(--ink);border-radius:18px;padding:20px 22px;text-align:left}
+.expect h3{font-size:22px;margin-bottom:8px}
+.expect li{margin:6px 0 6px 20px}
+.media{display:grid;gap:16px;margin-top:26px}
+@media(min-width:700px){.media{grid-template-columns:repeat(2,1fr)}}
+.media img{border-radius:18px;width:100%;border:2px solid var(--line)}
+.vids{display:grid;gap:14px;margin-top:26px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:800px){.vids{grid-template-columns:repeat(4,1fr)}}
+.vids video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:16px}
+.fit{display:grid;gap:22px;margin-top:24px;align-items:center}
+@media(min-width:800px){.fit{grid-template-columns:1fr 1fr}}
+.fit ul{list-style:none;padding:0;display:grid;gap:10px}
+.fit li::before{content:"✔ ";color:var(--go);font-weight:800}
+.fit .no{background:var(--soft);border-radius:14px;padding:16px;margin-top:16px;font-size:15px}
+.fit img{border-radius:18px;width:100%}
+.kits{background:var(--soft)}
+.kitgrid{display:grid;gap:18px;margin-top:28px}
+@media(min-width:800px){.kitgrid{grid-template-columns:repeat(3,1fr)}}
+.kit{background:#fff;border:3px solid var(--line);border-radius:22px;padding:26px 22px;text-align:center;position:relative;display:flex;flex-direction:column;gap:6px}
+.kit.top{border-color:var(--ink)}
+.kit .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-weight:700;font-size:13px;padding:4px 14px;border-radius:99px;white-space:nowrap}
+.kit h3{font-size:24px}
+.kit .p{font:800 40px var(--display)}
+.kit .old{text-decoration:line-through;color:var(--mute);min-height:1.4em}
+.kit .btn{margin-top:10px;padding:16px 14px;font-size:17px}
+.kit .pay{font-weight:600;font-size:14px;color:var(--go)}
+.quotes{display:grid;gap:16px;margin-top:26px}
+@media(min-width:800px){.quotes{grid-template-columns:repeat(3,1fr)}}
+.quote{border:2px solid var(--line);border-radius:18px;padding:20px}
+.quote b{display:block;margin-top:10px;font-size:15px}
+.guar{background:var(--soft);border-radius:24px;padding:34px 26px}
+details{border-bottom:2px solid var(--line);padding:16px 0}
+summary{font-weight:700;font-size:18px;cursor:pointer}
+details p{margin-top:8px;color:var(--mute)}
+.support{background:var(--soft);padding:44px 0}
+.support h2{font-size:clamp(24px,4.5vw,34px)}
+.btn.wa{background:#1faa59;box-shadow:0 5px 0 #14733c;margin-top:16px}
+.btn.wa:hover{box-shadow:0 3px 0 #14733c}
+footer{background:var(--ink);color:#b9cde0;padding:30px 0;text-align:center;font-size:14px}
+footer a{color:#fff}
+.sticky{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:3px solid var(--ink);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:9}
+.sticky .t{font-weight:800;line-height:1.2;font-size:15px}
+.sticky .t span{display:block;font-weight:600;color:var(--mute);font-size:13px}
+.sticky .btn{padding:13px 18px;font-size:16px;white-space:nowrap}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="bar" id="topbar"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="stamp" id="stamp"></div>
+      <h1 id="headline"></h1>
+      <p class="sub" id="subheadline"></p>
+      <a class="btn" id="ctaHero"></a>
+      <div class="ticks" id="ticks"></div>
+    </div>
+    <div class="heroimg" id="heroimg"></div>
+  </div>
+</header>
+
+<section id="prodSec">
+  <div class="wrap center">
+    <h2 id="prodTitle"></h2>
+    <p class="lead" id="prodLead"></p>
+    <div class="feats" id="feats"></div>
+    <div class="expect">
+      <h3 id="expTitle"></h3>
+      <ul id="expList"></ul>
+      <p id="expNote" style="margin-top:10px;font-weight:700"></p>
+    </div>
+  </div>
+</section>
+
+<section class="cod">
+  <div class="wrap">
+    <h2 id="codTitle"></h2>
+    <p class="lead" id="codLead"></p>
+    <div class="steps" id="steps"></div>
+    <div class="note" id="codNote"></div>
+  </div>
+</section>
+
+<section id="mediaSec">
+  <div class="wrap center">
+    <h2 id="mediaTitle"></h2>
+    <div class="media" id="media"></div>
+  </div>
+</section>
+
+<section id="vidSec" style="padding-top:0">
+  <div class="wrap center">
+    <h2 id="vidTitle"></h2>
+    <p class="lead" id="vidLead"></p>
+    <div class="vids" id="vids"></div>
+    <p style="margin-top:26px"><a class="btn" id="ctaVid"></a></p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 id="fitTitle"></h2>
+    <div class="fit">
+      <div><ul id="fitList"></ul><div class="no" id="fitNo"></div></div>
+      <div id="fitImg"></div>
+    </div>
+  </div>
+</section>
+
+<section class="kits" id="kits">
+  <div class="wrap center">
+    <h2 id="kitsTitle"></h2>
+    <p class="lead" id="kitsLead"></p>
+    <div class="kitgrid" id="kitgrid"></div>
+  </div>
+</section>
+
+<section id="quoteSec">
+  <div class="wrap">
+    <h2 id="quoteTitle"></h2>
+    <div class="quotes" id="quotes"></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="guar center">
+      <h2 id="guarTitle"></h2>
+      <p class="lead" id="guarText"></p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap" style="max-width:760px">
+    <h2>Perguntas frequentes</h2>
+    <div id="faq"></div>
+    <p class="center" style="margin-top:30px"><a class="btn" id="ctaFaq"></a></p>
+  </div>
+</section>
+
+<section class="support" id="supportSec">
+  <div class="wrap center">
+    <h2 id="supportText"></h2>
+    <a class="btn wa" id="supportBtn" target="_blank" rel="noopener"></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" id="footer"></div>
+</footer>
+
+<div class="sticky" id="sticky">
+  <div class="t" id="stickyText"></div>
+  <a class="btn" id="ctaSticky"></a>
+</div>
+
+<script>
+/* =====================================================================
+   EDITE SÓ AQUI. Troque textos, preços, links e mídias.
+   Todo o resto da página se atualiza sozinho.
+   ===================================================================== */
+const CONFIG = {
+  // --- Textos principais ---
+  faixaTopo: "🚚 Pague só quando receber · Frete grátis",
+  selo: "<b>Sem pagar nada agora.</b> Você paga ao entregador.",
+  titulo: "Cansou de forçar a vista para ler o celular? Peça o Óculos 2V Pro e só pague quando ele chegar na sua casa",
+  subtitulo: "Lentes com tecnologia de foco para perto e média distância, proteção contra luz azul e armação super resistente de titânio. Frete grátis e pagamento só na entrega.",
+  botao: "QUERO PAGAR SÓ NA ENTREGA",
+  botaoSub: "Sem pagamento antecipado",
+  ticks: ["✔ Frete grátis", "✔ Sem pagamento antecipado", "✔ Proteção contra luz azul", "✔ Armação de titânio"],
+
+  // --- Sobre o produto ---
+  tituloProduto: "Por que o Óculos 2V Pro conquista quem usa",
+  subProduto: "Feito para o dia a dia: leitura, celular, computador e tudo que exige mais da sua vista.",
+  beneficiosProduto: [
+    { icone: "🔍", titulo: "Foco para perto e média distância", texto: "Lentes com tecnologia e transição suave de foco, pensadas para leitura, celular e telas." },
+    { icone: "🛡️", titulo: "Proteção contra luz azul", texto: "Mais conforto visual para quem passa horas diante do celular e do computador." },
+    { icone: "💧", titulo: "Lente resistente que não embaça", texto: "Feita de resina com acetato de celulose, muito resistente e que não embaça." },
+    { icone: "🔩", titulo: "Armação de titânio", texto: "Titânio com acetato de celulose: estrutura reforçada, leve e durável." },
+    { icone: "👓", titulo: "Encaixe confortável", texto: "Design ergonômico e leve, que se ajusta bem ao rosto para usar o dia todo." },
+    { icone: "👥", titulo: "Modelo único e unissex", texto: "Um só modelo, moderno, que combina com homens e mulheres." }
+  ],
+  tituloExpect: "O que você pode esperar",
+  expectativas: [
+    "Melhor adaptação para perto e média distância, onde o zoom da lente tem mais força.",
+    "Para longe, depende de cada pessoa: alguns clientes ficam muito satisfeitos, outros levam mais tempo para se adaptar.",
+    "Serve bem para quem usa até cerca de +3,50 de grau, podendo variar de pessoa para pessoa.",
+    "Ideal como óculos de leitura e para uso diário no celular e no computador."
+  ],
+  notaExpect: "Importante: o 2V Pro não substitui óculos de grau prescritos por oftalmologista.",
+
+  // Link dos botões grandes. "#kits" rola até as ofertas. Ou coloque o link do seu checkout.
+  linkBotao: "#kits",
+
+  // --- Mídias (troque pelos arquivos do seu projeto, ex.: "/foto1.jpg") ---
+  imagemHero: "https://oculos-inteligente.online/wp-content/uploads/2025/12/image-4.png",
+  tituloMidia: "Cuide da sua visão no dia a dia",
+  midias: [
+    "https://oculos-inteligente.online/wp-content/uploads/2025/12/ezgif-com-gif-maker-1.gif",
+    "https://oculos-inteligente.online/wp-content/uploads/2025/12/Screenshot_6_480x480.webp"
+  ],
+  tituloVideos: "Veja o óculos em uso",
+  subVideos: "Toque no vídeo para assistir.",
+  videos: [
+    "https://oculos2v-pro.store/wp-content/uploads/2026/02/0204-1-3.mp4",
+    "https://oculos2v-pro.store/wp-content/uploads/2026/02/0204-1-4.mp4",
+    "https://oculos2v-pro.store/wp-content/uploads/2026/02/0204-1-1.mp4",
+    "https://oculos2v-pro.store/wp-content/uploads/2026/02/0204-1-2.mp4"
+  ],
+
+  // --- Pagamento na entrega (o grande destaque) ---
+  tituloPagamento: "Como funciona o pagamento na entrega",
+  subPagamento: "Você não paga nada para fazer o pedido. Só paga quando o produto estiver na sua mão.",
+  passos: [
+    { t: "Faça o pedido", d: "Escolha o kit e preencha seus dados. Leva cerca de 1 minuto." },
+    { t: "Receba em casa", d: "O produto é enviado para o endereço informado. O entregador avisa você pelo WhatsApp." },
+    { t: "Pague ao receber", d: "Confira o produto e pague ao entregador. Preencha abaixo as formas aceitas." }
+  ],
+  formasPagamento: "Formas de pagamento na entrega: dinheiro, Pix ou cartão.",   // ajuste para o que você realmente aceita
+  avisoEntrega: "⚠️ Escolha um endereço onde alguém esteja em casa para receber e pagar. No dia da entrega, fique de olho no WhatsApp.",
+
+  // --- Serve para você? (mantenha só o que for verdadeiro para o seu fornecedor) ---
+  tituloServe: "Serve para você?",
+  serve: ["Miopia leve ou moderada", "Hipermetropia", "Vista cansada (presbiopia)", "Até cerca de +3,50 de grau (varia de pessoa para pessoa)", "Modelo único e unissex"],
+  naoServe: "⚠️ Quem usa grau muito elevado (acima de +4) pode não se adaptar. O 2V Pro não substitui óculos de grau prescritos. Na dúvida, consulte seu oftalmologista antes de comprar.",
+  imagemServe: "https://oculos-inteligente.online/wp-content/uploads/2025/12/imgi_1_Screenshot_3_480x480.png",
+
+  // --- Ofertas (cada uma leva para o seu link de checkout) ---
+  tituloKits: "Escolha seu kit e pague só na entrega",
+  subKits: "Todas as opções com frete grátis e pagamento ao receber.",
+  moeda: "R$",
+  kits: [
+    { nome: "1 Óculos",  preco: 149.90, precoDe: 0, destaque: "",               link: "#" },
+    { nome: "2 Óculos",  preco: 249.90, precoDe: 0, destaque: "Mais escolhido", link: "#" },
+    { nome: "3 Óculos",  preco: 329.90, precoDe: 0, destaque: "Melhor preço",   link: "#" }
+  ],
+  botaoKit: "Quero este e pagar na entrega",
+
+  // --- Depoimentos: coloque APENAS avaliações reais de clientes. Vazio = a seção some. ---
+  tituloDepoimentos: "Quem comprou, aprovou",
+  depoimentos: [
+    // { nome: "Nome S.", cidade: "Cidade/UF", texto: "O que o cliente escreveu." }
+  ],
+
+  // --- Garantia e perguntas ---
+  tituloGarantia: "Garantia contra defeito de fábrica",
+  textoGarantia: "Se o produto chegar com defeito de fábrica, é só falar com a gente. Por ser uma compra com pagamento na entrega, a garantia cobre defeito de fabricação. Confira o produto na hora de receber.",
+  perguntas: [
+    { p: "O óculos substitui meu óculos de grau?", r: "Não. O 2V Pro não substitui óculos de grau prescritos. É um modelo de uso diário para conforto visual e proteção, ideal para leitura, celular e computador." },
+    { p: "Funciona para enxergar de longe?", r: "A adaptação é mais forte para perto e média distância. Para longe, depende de cada pessoa e do grau: alguns clientes ficam muito satisfeitos, outros levam mais tempo e alguns não se adaptam." },
+    { p: "Qual é a garantia?", r: "Garantia contra defeito de fábrica. Confira o produto na hora de receber." },
+    { p: "Quanto custa o frete?", r: "O frete é grátis para todo o Brasil. Você não paga nada a mais pela entrega." },
+    { p: "Como vou receber?", r: "O entregador entra em contato antes de sair para a rota, e a entrega é feita em horário comercial." },
+    { p: "Em quanto tempo chega?", r: "Preencha aqui o prazo real de entrega da sua operação." },
+    { p: "Quais dados preciso informar?", r: "Só o essencial: nome completo, endereço de entrega e telefone com WhatsApp para confirmar a entrega." },
+    { p: "Posso pagar no cartão ou no Pix?", r: "Preencha aqui as formas de pagamento que você realmente aceita na entrega." }
+  ],
+
+  // --- Suporte no WhatsApp ---
+  whatsappSuporte: "5500000000000",   // DDI + DDD + número, só dígitos (ex.: 5521999999999)
+  textoSuporte: "Ficou com dúvidas? Entre em contato com o nosso suporte",
+  botaoSuporte: "💬 Falar no WhatsApp",
+  mensagemSuporte: "Olá! Tenho uma dúvida sobre o Óculos 2V Pro.",
+
+  // --- Rodapé ---
+  rodape: "© 2026 Sua Loja · CNPJ 00.000.000/0001-00",
+  linkTermos: "#", linkPrivacidade: "#"
+};
+/* ===================================================================== */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = v => CONFIG.moeda + " " + v.toFixed(2).replace(".", ",");
+
+$("topbar").textContent = CONFIG.faixaTopo;
+$("stamp").innerHTML = CONFIG.selo;
+$("headline").textContent = CONFIG.titulo;
+$("subheadline").textContent = CONFIG.subtitulo;
+["ctaHero","ctaVid","ctaFaq","ctaSticky"].forEach(i => {
+  const a = $(i); a.href = CONFIG.linkBotao;
+  a.innerHTML = i === "ctaSticky" ? "PEDIR AGORA" : esc(CONFIG.botao) + "<small>" + esc(CONFIG.botaoSub) + "</small>";
+});
+$("stickyText").innerHTML = "Pague só na entrega<span>Frete grátis</span>";
+$("ticks").innerHTML = CONFIG.ticks.map(t => "<span>" + esc(t) + "</span>").join("");
+$("heroimg").innerHTML = '<img src="' + esc(CONFIG.imagemHero) + '" alt="Óculos inteligente">';
+
+$("codTitle").textContent = CONFIG.tituloPagamento;
+$("codLead").textContent = CONFIG.subPagamento;
+$("steps").innerHTML = CONFIG.passos.map(s => '<div class="step"><h3>' + esc(s.t) + "</h3><p>" + esc(s.d) + "</p></div>").join("");
+$("codNote").innerHTML = "<b>" + esc(CONFIG.formasPagamento) + "</b><br>" + esc(CONFIG.avisoEntrega);
+
+$("prodTitle").textContent = CONFIG.tituloProduto;
+$("prodLead").textContent = CONFIG.subProduto;
+$("feats").innerHTML = CONFIG.beneficiosProduto.map(b =>
+  '<div class="feat"><div class="ic" aria-hidden="true">' + b.icone + "</div><h3>" + esc(b.titulo) + "</h3><p>" + esc(b.texto) + "</p></div>").join("");
+$("expTitle").textContent = CONFIG.tituloExpect;
+$("expList").innerHTML = CONFIG.expectativas.map(t => "<li>" + esc(t) + "</li>").join("");
+$("expNote").textContent = CONFIG.notaExpect;
+
+if (CONFIG.midias.length) {
+  $("mediaTitle").textContent = CONFIG.tituloMidia;
+  $("media").innerHTML = CONFIG.midias.map(u => '<img src="' + esc(u) + '" alt="" loading="lazy">').join("");
+} else $("mediaSec").hidden = true;
+
+if (CONFIG.videos.length) {
+  $("vidTitle").textContent = CONFIG.tituloVideos;
+  $("vidLead").textContent = CONFIG.subVideos;
+  $("vids").innerHTML = CONFIG.videos.map(u => '<video src="' + esc(u) + '" controls playsinline preload="none"></video>').join("");
+} else $("vidSec").hidden = true;
+
+$("fitTitle").textContent = CONFIG.tituloServe;
+$("fitList").innerHTML = CONFIG.serve.map(s => "<li>" + esc(s) + "</li>").join("");
+$("fitNo").textContent = CONFIG.naoServe;
+$("fitImg").innerHTML = CONFIG.imagemServe ? '<img src="' + esc(CONFIG.imagemServe) + '" alt="" loading="lazy">' : "";
+
+$("kitsTitle").textContent = CONFIG.tituloKits;
+$("kitsLead").textContent = CONFIG.subKits;
+$("kitgrid").innerHTML = CONFIG.kits.map(k =>
+  '<div class="kit' + (k.destaque ? " top" : "") + '">' + (k.destaque ? '<span class="badge">' + esc(k.destaque) + "</span>" : "") +
+  "<h3>" + esc(k.nome) + '</h3><div class="old">' + (k.precoDe > k.preco ? fmt(k.precoDe) : "") + '</div><div class="p">' + fmt(k.preco) +
+  '</div><div class="pay">Pague só na entrega · Frete grátis</div><a class="btn" href="' + esc(k.link) + '">' + esc(CONFIG.botaoKit) + "</a></div>").join("");
+
+if (CONFIG.depoimentos.length) {
+  $("quoteTitle").textContent = CONFIG.tituloDepoimentos;
+  $("quotes").innerHTML = CONFIG.depoimentos.map(d =>
+    '<div class="quote"><p>“' + esc(d.texto) + "”</p><b>" + esc(d.nome) + " · " + esc(d.cidade) + "</b></div>").join("");
+} else $("quoteSec").hidden = true;
+
+$("guarTitle").textContent = CONFIG.tituloGarantia;
+$("guarText").textContent = CONFIG.textoGarantia;
+$("faq").innerHTML = CONFIG.perguntas.map(q => "<details><summary>" + esc(q.p) + "</summary><p>" + esc(q.r) + "</p></details>").join("");
+$("footer").innerHTML = "<p>" + esc(CONFIG.rodape) + '</p><p style="margin-top:8px"><a href="' + esc(CONFIG.linkTermos) + '">Termos de Uso</a> · <a href="' + esc(CONFIG.linkPrivacidade) + '">Política de Privacidade</a></p>';
+
+$("supportText").textContent = CONFIG.textoSuporte;
+$("supportBtn").textContent = CONFIG.botaoSuporte;
+$("supportBtn").href = "https://wa.me/" + CONFIG.whatsappSuporte + "?text=" + encodeURIComponent(CONFIG.mensagemSuporte);
+
+// Esconde a barra fixa enquanto as ofertas estão na tela
+new IntersectionObserver(e => $("sticky").hidden = e[0].isIntersecting).observe($("kits"));
+</script>
+</body>
+</html>
