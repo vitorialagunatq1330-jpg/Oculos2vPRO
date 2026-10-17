@@ -21,11 +21,13 @@ section{padding:60px 0}
 .center{text-align:center}
 .lead{color:var(--mute);max-width:40em}
 .center .lead{margin:0 auto}
-.bar{background:var(--go);color:#fff;text-align:center;font-weight:800;font-size:15px;padding:10px 12px;letter-spacing:.01em}
+.bar{background:var(--go);color:#fff;text-align:center;font-weight:800;padding:14px 12px;letter-spacing:.01em}
+.bar .b1{font:800 clamp(20px,4.8vw,32px)/1.15 var(--display)}
+.bar .b2{font-size:clamp(15px,3.4vw,20px);margin-top:5px}
 .hero{background:linear-gradient(160deg,#071a33 0%,#0b2f5c 55%,#0d4a8a 100%);color:#fff;padding:44px 0 56px}
 .hero .wrap{display:grid;gap:30px;align-items:center}
 @media(min-width:820px){.hero .wrap{grid-template-columns:1.05fr .95fr}}
-.hero h1{font-size:clamp(34px,7vw,58px);font-weight:800}
+.hero h1{font-size:clamp(28px,5.6vw,46px);font-weight:800}
 .hero p.sub{font-size:19px;margin:16px 0 22px;color:#cfe0f2}
 .stamp{display:inline-block;background:var(--cy);color:var(--ink);border-radius:12px;padding:10px 16px;font-weight:700;margin-bottom:18px}
 .stamp b{color:var(--ink)}
@@ -40,6 +42,11 @@ section{padding:60px 0}
 .trust{background:var(--cy);color:var(--ink);display:flex;flex-wrap:wrap;justify-content:center;gap:8px 28px;padding:14px 16px;font-weight:800;font-size:15px}
 .dark{background:linear-gradient(160deg,#071a33 0%,#0b2f5c 60%,#0d4a8a 100%);color:#fff}
 .dark .lead{color:#b9cde0}
+.rseal{display:grid;place-items:center;text-align:center;border-radius:50%;width:128px;height:128px;flex:none;font:800 15px/1.1 var(--display);border:4px solid #fff;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.rseal b{display:block;font-size:44px;line-height:1}
+.gseal{background:linear-gradient(135deg,#ffb800,#ff7a00);color:#3a2300;margin:0 auto 16px}
+.eseal{background:linear-gradient(135deg,#19c3d6,#0d8fb0);color:#fff}
+.expert{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap;background:var(--soft);border-radius:20px;padding:24px;max-width:760px;margin:0 auto;text-align:left}
 .alert{background:var(--warn);border:3px solid #ffb800;border-left-width:10px;border-radius:18px;padding:22px 24px;color:#4a3a00;text-align:left;margin:0 auto 38px;max-width:760px}
 .alert h3{font-size:24px;color:#8a4b00;margin-bottom:8px}
 .alert li{margin:6px 0 6px 20px}
@@ -142,6 +149,19 @@ footer a{color:#fff}
   </div>
 </section>
 
+<section id="expertSec" style="padding:0 0 50px">
+  <div class="wrap">
+    <div class="expert">
+      <div class="rseal eseal" id="eseal"></div>
+      <div>
+        <h3 id="eTitle" style="font-size:24px;margin-bottom:6px"></h3>
+        <p id="eText"></p>
+        <p id="eName" style="font-weight:700;margin-top:8px"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="cod">
   <div class="wrap">
     <h2 id="codTitle"></h2>
@@ -199,19 +219,20 @@ footer a{color:#fff}
 </section>
 
 <section style="padding-top:0">
-  <div class="wrap">
-    <div class="guar center">
-      <h2 id="guarTitle"></h2>
-      <p class="lead" id="guarText"></p>
-    </div>
-  </div>
-</section>
-
-<section style="padding-top:0">
   <div class="wrap" style="max-width:760px">
     <h2>Perguntas frequentes</h2>
     <div id="faq"></div>
     <p class="center" style="margin-top:30px"><a class="btn" id="ctaFaq"></a></p>
+  </div>
+</section>
+
+<section style="padding:20px 0 60px">
+  <div class="wrap">
+    <div class="guar center">
+      <div class="rseal gseal" id="gseal"></div>
+      <h2 id="guarTitle"></h2>
+      <p class="lead" id="guarText"></p>
+    </div>
   </div>
 </section>
 
@@ -238,12 +259,13 @@ footer a{color:#fff}
    ===================================================================== */
 const CONFIG = {
   // --- Textos principais ---
+  tituloFaixa: "PROTEJA O SEU BEM MAIS PRECIOSO, A SUA VISÃO!",
   faixaTopo: "🚚 Pague só quando receber · Frete grátis",
   selo: "<b>Sem pagar nada agora.</b> Você paga ao entregador.",
-  titulo: "Cansou de forçar a vista para ler o celular? Peça o Óculos 2V Pro e só pague quando ele chegar na sua casa",
+  titulo: "CHEGA DE FORÇAR A VISTA! CONHEÇA O 2V PRO: O ÓCULOS QUE VAI TRAZER MAIS CONFORTO PARA SUA ROTINA!",
   subtitulo: "Lentes com tecnologia de foco para perto e média distância, proteção contra luz azul e armação super resistente de titânio. Frete grátis e pagamento só na entrega.",
   seloHero: "PAGUE<br>SÓ NA<br>ENTREGA",
-  faixaSelos: ["🚚 Frete grátis", "💵 Pague só na entrega", "🔒 Sem pagamento antecipado", "🛡️ Garantia contra defeito de fábrica"],
+  faixaSelos: ["🚚 Frete grátis", "💵 Pague só na entrega", "🔒 Sem pagamento antecipado", "🛡️ 7 dias de garantia"],
   botao: "QUERO PAGAR SÓ NA ENTREGA",
   botaoSub: "Sem pagamento antecipado",
   ticks: ["✔ Frete grátis", "✔ Sem pagamento antecipado", "✔ Proteção contra luz azul", "✔ Armação de titânio"],
@@ -278,8 +300,8 @@ const CONFIG = {
     "https://oculos-inteligente.online/wp-content/uploads/2025/12/ezgif-com-gif-maker-1.gif",
     "https://oculos-inteligente.online/wp-content/uploads/2025/12/Screenshot_6_480x480.webp"
   ],
-  tituloVideos: "Veja o óculos em uso",
-  subVideos: "Toque no vídeo para assistir.",
+  tituloVideos: "Quem comprou, aprovou!",
+  subVideos: "Entrega rápida com pagamento somente na entrega. Veja o que clientes reais estão dizendo.",
   videos: [
     "/depoismentos%20(1).mp4",
     "/depoismentos%20(2).mp4",
@@ -297,6 +319,14 @@ const CONFIG = {
   ],
   formasPagamento: "Formas de pagamento na entrega: dinheiro, Pix ou cartão.",   // ajuste para o que você realmente aceita
   avisoEntrega: "⚠️ Escolha um endereço onde alguém esteja em casa para receber e pagar. No dia da entrega, fique de olho no WhatsApp.",
+
+  // --- Testado por especialista: só aparece se você preencher o "texto". Preencha APENAS se o teste for real e comprovável. ---
+  especialista: {
+    selo: "🩺<br>TESTADO POR<br>ESPECIALISTA",
+    titulo: "Testado por especialista",
+    texto: "",   // Ex.: "Avaliado pelo(a) Dr(a). ..., oftalmologista, que testou o produto em ..."
+    nome: ""     // Ex.: "Dr(a). Nome Sobrenome · CRM 00000"
+  },
 
   // --- Serve para você? (mantenha só o que for verdadeiro para o seu fornecedor) ---
   tituloServe: "Serve para você?",
@@ -330,12 +360,13 @@ const CONFIG = {
   ],
 
   // --- Garantia e perguntas ---
-  tituloGarantia: "🛡️ Garantia contra defeito de fábrica",
-  textoGarantia: "Se o produto chegar com defeito de fábrica, é só falar com a gente. Por ser uma compra com pagamento na entrega, a garantia cobre defeito de fabricação. Confira o produto na hora de receber.",
+  seloGarantia: "<b>7</b>DIAS DE<br>GARANTIA",
+  tituloGarantia: "Satisfação garantida ou seu dinheiro de volta!",
+  textoGarantia: "Se por algum motivo achar que o produto não é para você, basta cancelar a compra em até 7 dias após receber e devolveremos todo o valor pago, sem perguntas e sem burocracia! O produto também tem garantia contra defeito de fábrica.",
   perguntas: [
     { p: "O óculos substitui meu óculos de grau?", r: "Não. O 2V Pro não substitui óculos de grau prescritos. É um modelo de uso diário para conforto visual e proteção, ideal para leitura, celular e computador." },
     { p: "Funciona para enxergar de longe?", r: "A adaptação é mais forte para perto e média distância. Para longe, depende de cada pessoa e do grau: alguns clientes ficam muito satisfeitos, outros levam mais tempo e alguns não se adaptam." },
-    { p: "Qual é a garantia?", r: "Garantia contra defeito de fábrica. Confira o produto na hora de receber." },
+    { p: "Qual é a garantia?", r: "São 7 dias de garantia: se achar que o produto não é para você, pode cancelar em até 7 dias após receber e devolvemos o valor pago. O produto também tem garantia contra defeito de fábrica." },
     { p: "Quanto custa o frete?", r: "O frete é grátis para todo o Brasil. Você não paga nada a mais pela entrega." },
     { p: "Como vou receber?", r: "O entregador entra em contato antes de sair para a rota, e a entrega é feita em horário comercial." },
     { p: "Em quanto tempo chega?", r: "Preencha aqui o prazo real de entrega da sua operação." },
@@ -359,7 +390,7 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt = v => CONFIG.moeda + " " + v.toFixed(2).replace(".", ",");
 
-$("topbar").textContent = CONFIG.faixaTopo;
+$("topbar").innerHTML = '<div class="b1">' + esc(CONFIG.tituloFaixa) + '</div><div class="b2">' + esc(CONFIG.faixaTopo) + "</div>";
 $("stamp").innerHTML = CONFIG.selo;
 $("headline").textContent = CONFIG.titulo;
 $("subheadline").textContent = CONFIG.subtitulo;
@@ -428,6 +459,14 @@ $("alertTitle").textContent = CONFIG.tituloAtencao;
 $("alertList").innerHTML = CONFIG.listaAtencao.map(t => "<li>" + esc(t) + "</li>").join("");
 $("alertNote").textContent = CONFIG.notaAtencao;
 if (CONFIG.avisoPromo) { $("alertPromo").textContent = CONFIG.avisoPromo; $("alertPromo").hidden = false; }
+
+$("gseal").innerHTML = CONFIG.seloGarantia;
+if (CONFIG.especialista.texto) {
+  $("eseal").innerHTML = CONFIG.especialista.selo;
+  $("eTitle").textContent = CONFIG.especialista.titulo;
+  $("eText").textContent = CONFIG.especialista.texto;
+  $("eName").textContent = CONFIG.especialista.nome;
+} else $("expertSec").hidden = true;
 
 // Esconde a barra fixa enquanto as ofertas estão na tela
 new IntersectionObserver(e => $("sticky").hidden = e[0].isIntersecting).observe($("kits"));
