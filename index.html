@@ -111,6 +111,8 @@ details p{margin-top:8px;color:var(--mute)}
 .btn.wa:hover{box-shadow:0 3px 0 #14733c}
 footer{background:#061426;border-top:3px solid var(--cy);color:#b9cde0;padding:30px 0;text-align:center;font-size:14px}
 footer a{color:#fff}
+.wafloat{position:fixed;right:14px;bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:10;display:flex;align-items:center;gap:8px;background:#25d366;color:#fff;font:800 16px var(--body);text-decoration:none;padding:12px 18px 12px 14px;border-radius:99px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.wafloat:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 .sticky{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:3px solid var(--ink);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:9}
 .sticky .t{font-weight:800;line-height:1.2;font-size:15px}
 .sticky .t span{display:block;font-weight:600;color:var(--mute);font-size:13px}
@@ -223,15 +225,7 @@ footer a{color:#fff}
   </div>
 </section>
 
-<section style="padding-top:0">
-  <div class="wrap" style="max-width:760px">
-    <h2>Perguntas frequentes</h2>
-    <div id="faq"></div>
-    <p class="center" style="margin-top:30px"><a class="btn" id="ctaFaq"></a></p>
-  </div>
-</section>
-
-<section style="padding:20px 0 60px">
+<section style="padding:56px 0 36px">
   <div class="wrap">
     <div class="guar center">
       <svg class="gsvg" viewBox="0 0 200 200" role="img" aria-label="7 dias de garantia">
@@ -254,16 +248,22 @@ footer a{color:#fff}
   </div>
 </section>
 
-<section class="support dark" id="supportSec">
-  <div class="wrap center">
-    <h2 id="supportText"></h2>
-    <a class="btn wa" id="supportBtn" target="_blank" rel="noopener"></a>
+<section style="padding-top:0">
+  <div class="wrap" style="max-width:760px">
+    <h2>Perguntas frequentes</h2>
+    <div id="faq"></div>
+    <p class="center" style="margin-top:30px"><a class="btn" id="ctaFaq"></a></p>
   </div>
 </section>
 
 <footer>
   <div class="wrap" id="footer"></div>
 </footer>
+
+<a class="wafloat" id="waFloat" target="_blank" rel="noopener" aria-label="Falar com o suporte no WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span id="waText"></span>
+</a>
 
 <div class="sticky" id="sticky">
   <div class="t" id="stickyText"></div>
@@ -394,14 +394,12 @@ const CONFIG = {
     { p: "Posso pagar no cartão ou no Pix?", r: "Preencha aqui as formas de pagamento que você realmente aceita na entrega." }
   ],
 
-  // --- Suporte no WhatsApp ---
-  whatsappSuporte: "5500000000000",   // DDI + DDD + número, só dígitos (ex.: 5521999999999)
-  textoSuporte: "Ficou com dúvidas? Entre em contato com o nosso suporte",
-  botaoSuporte: "💬 Falar no WhatsApp",
-  mensagemSuporte: "Olá! Tenho uma dúvida sobre o Óculos 2V Pro.",
+  // --- Botão flutuante do WhatsApp (dúvidas) ---
+  whatsappLink: "https://wa.me/5521990800157?text=Ol%C3%A1%2C%20tenho%20algumas%20duvidas%20sobre%20o%20produto%20e%20a%20entrega.%20Pode%20me%20ajudar%3F",
+  textoWhatsapp: "Dúvidas?",
 
   // --- Rodapé ---
-  rodape: "© 2026 Sua Loja · CNPJ 00.000.000/0001-00",
+  rodape: "© 2026 Óculos 2V PRO. Todos os direitos reservados.",
   linkTermos: "#", linkPrivacidade: "#"
 };
 /* ===================================================================== */
@@ -469,9 +467,8 @@ $("guarText").textContent = CONFIG.textoGarantia;
 $("faq").innerHTML = CONFIG.perguntas.map(q => "<details><summary>" + esc(q.p) + "</summary><p>" + esc(q.r) + "</p></details>").join("");
 $("footer").innerHTML = "<p>" + esc(CONFIG.rodape) + '</p><p style="margin-top:8px"><a href="' + esc(CONFIG.linkTermos) + '">Termos de Uso</a> · <a href="' + esc(CONFIG.linkPrivacidade) + '">Política de Privacidade</a></p>';
 
-$("supportText").textContent = CONFIG.textoSuporte;
-$("supportBtn").textContent = CONFIG.botaoSuporte;
-$("supportBtn").href = "https://wa.me/" + CONFIG.whatsappSuporte + "?text=" + encodeURIComponent(CONFIG.mensagemSuporte);
+$("waFloat").href = CONFIG.whatsappLink;
+$("waText").textContent = CONFIG.textoWhatsapp;
 
 $("seal").innerHTML = CONFIG.seloHero;
 $("trust").innerHTML = CONFIG.faixaSelos.map(t => "<span>" + esc(t) + "</span>").join("");
