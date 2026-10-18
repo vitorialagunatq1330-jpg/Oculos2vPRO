@@ -78,6 +78,10 @@ section{padding:60px 0}
 .media img{border-radius:18px;width:100%;border:2px solid var(--line)}
 .vids{display:grid;gap:14px;margin-top:26px;grid-template-columns:repeat(2,1fr)}
 @media(min-width:800px){.vids{grid-template-columns:repeat(4,1fr)}}
+.vwrap{position:relative}
+.vsound{position:absolute;left:50%;top:12px;transform:translateX(-50%);background:rgba(0,0,0,.75);color:#fff;border:2px solid #fff;border-radius:99px;padding:8px 14px;font:800 14px var(--body);cursor:pointer;white-space:nowrap;z-index:2}
+.vsound:hover{background:#000}
+.soundnote{margin-top:14px;font-weight:800;color:#ffe27a;font-size:18px}
 .vids video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:16px}
 .fit{display:grid;gap:22px;margin-top:24px;align-items:center}
 @media(min-width:800px){.fit{grid-template-columns:1fr 1fr}}
@@ -187,6 +191,7 @@ footer a{color:#fff}
   <div class="wrap center">
     <h2 id="vidTitle"></h2>
     <p class="lead" id="vidLead"></p>
+    <p class="soundnote" id="vidSound"></p>
     <div class="vids" id="vids"></div>
     <p style="margin-top:26px"><a class="btn" id="ctaVid"></a></p>
   </div>
@@ -320,6 +325,8 @@ const CONFIG = {
     "https://oculos-inteligente.online/wp-content/uploads/2025/12/Screenshot_6_480x480.webp"
   ],
   tituloVideos: "Quem comprou, aprovou!",
+  avisoSom: "🔊 Aumente o volume do celular e toque em “Ativar o som” para ouvir os depoimentos.",
+  textoSom: "🔊 Ativar o som",
   subVideos: "Entrega rápida com pagamento somente na entrega. Veja o que clientes reais estão dizendo.",
   videos: [
     "/depoismentos%20(1).mp4",
@@ -441,7 +448,20 @@ if (CONFIG.midias.length) {
 if (CONFIG.videos.length) {
   $("vidTitle").textContent = CONFIG.tituloVideos;
   $("vidLead").textContent = CONFIG.subVideos;
-  $("vids").innerHTML = CONFIG.videos.map(u => '<video src="' + esc(u) + '" controls playsinline preload="none"></video>').join("");
+  $("vidSound").textContent = CONFIG.avisoSom;
+  $("vids").innerHTML = CONFIG.videos.map(u => '<div class="vwrap"><video src="' + esc(u) + '" controls muted loop playsinline preload="metadata"></video><button type="button" class="vsound">' + esc(CONFIG.textoSom) + "</button></div>").join("");
+  // Começa sem som; o botão liga o som e reinicia o vídeo do começo
+  document.querySelectorAll("#vids .vwrap").forEach(w => {
+    const v = w.querySelector("video"), b = w.querySelector("button");
+    b.addEventListener("click", () => { v.muted = false; v.volume = 1; v.currentTime = 0; v.play().catch(() => {}); });
+    v.addEventListener("volumechange", () => { b.hidden = !v.muted; });
+  });
+  // Começa sozinho (sem som) quando o vídeo aparece na tela e pausa quando sai
+  const vio = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { v.muted = true; v.play().catch(() => {}); } else v.pause();
+  }), { threshold: 0.5 });
+  document.querySelectorAll("#vids video").forEach(v => vio.observe(v));
 } else $("vidSec").hidden = true;
 
 $("fitTitle").textContent = CONFIG.tituloServe;
