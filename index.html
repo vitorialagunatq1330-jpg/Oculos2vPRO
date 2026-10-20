@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Óculos Inteligente | Pague só na entrega</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18511906715"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18511906715');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
@@ -314,6 +322,10 @@ const CONFIG = {
   ],
   notaExpect: "Importante: o 2V Pro não substitui óculos de grau prescritos por oftalmologista.",
 
+  // --- Google Ads: conversão ao clicar em um kit (ida ao checkout) ---
+  // Cole aqui o valor "send_to" do snippet de evento do Google Ads. Ex.: "AW-123456789/AbCdEfGhIjKlMnOp"
+  googleConversaoCheckout: "",
+
   // Link dos botões grandes. "#kits" rola até as ofertas. Ou coloque o link do seu checkout.
   linkBotao: "#kits",
 
@@ -509,6 +521,11 @@ $("alertCall").textContent = CONFIG.chamadaKits;
 document.querySelectorAll(".cta2").forEach(a => {
   a.href = CONFIG.linkBotao;
   a.innerHTML = esc(CONFIG.botao2) + "<small>" + esc(CONFIG.botao2Sub) + "</small>";
+});
+
+document.addEventListener("click", e => {
+  const a = e.target.closest(".kit a.btn");
+  if (a && window.gtag && CONFIG.googleConversaoCheckout) gtag("event", "conversion", { send_to: CONFIG.googleConversaoCheckout });
 });
 
 // Esconde a barra fixa enquanto as ofertas estão na tela
