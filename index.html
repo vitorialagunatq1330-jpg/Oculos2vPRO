@@ -324,7 +324,7 @@ const CONFIG = {
 
   // --- Google Ads: conversão ao clicar em um kit (ida ao checkout) ---
   // Cole aqui o valor "send_to" do snippet de evento do Google Ads. Ex.: "AW-123456789/AbCdEfGhIjKlMnOp"
-  googleConversaoCheckout: "",
+  googleConversaoCheckout: "AW-18511906715/oDifCJzN4qIdEJuPlftE",
 
   // Link dos botões grandes. "#kits" rola até as ofertas. Ou coloque o link do seu checkout.
   linkBotao: "#kits",
@@ -525,7 +525,12 @@ document.querySelectorAll(".cta2").forEach(a => {
 
 document.addEventListener("click", e => {
   const a = e.target.closest(".kit a.btn");
-  if (a && window.gtag && CONFIG.googleConversaoCheckout) gtag("event", "conversion", { send_to: CONFIG.googleConversaoCheckout });
+  if (!a || !window.gtag || !CONFIG.googleConversaoCheckout) return;
+  e.preventDefault();
+  let done = false;
+  const go = () => { if (!done) { done = true; window.location.href = a.href; } };
+  gtag("event", "conversion", { send_to: CONFIG.googleConversaoCheckout, event_callback: go });
+  setTimeout(go, 800);
 });
 
 // Esconde a barra fixa enquanto as ofertas estão na tela
