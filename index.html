@@ -12,7 +12,7 @@
   gtag('js', new Date());
   gtag('config', 'AW-18511906715');
 </script>
-<link rel="preload" as="image" href="/20251103-193131prok2d1x.png" fetchpriority="high">
+<link rel="preload" as="image" href="/foto-topo.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -85,6 +85,7 @@ section{padding:60px 0}
 .expect li{margin:6px 0 6px 20px}
 .media{display:grid;gap:16px;margin-top:26px}
 @media(min-width:700px){.media{grid-template-columns:repeat(2,1fr)}}
+.media video{border-radius:18px;width:100%;height:auto;border:2px solid var(--line);background:#000}
 .media img{border-radius:18px;width:100%;height:auto;border:2px solid var(--line)}
 .vids{display:grid;gap:14px;margin-top:26px;grid-template-columns:repeat(2,1fr)}
 @media(min-width:800px){.vids{grid-template-columns:repeat(4,1fr)}}
@@ -143,7 +144,7 @@ footer a{color:#fff}
   <div class="wrap">
     <h1 id="headline"></h1>
     <p class="sub" id="subheadline"></p>
-    <div class="herovis"><div class="heroimg" id="heroimg"><img src="/20251103-193131prok2d1x.png" alt="Óculos inteligente" width="600" height="600" fetchpriority="high" decoding="async"></div><div class="seal" id="seal"></div></div>
+    <div class="herovis"><div class="heroimg" id="heroimg"><img src="/foto-topo.webp" alt="Óculos inteligente" width="354" height="355" fetchpriority="high" decoding="async"></div><div class="seal" id="seal"></div></div>
     <div class="stamp" id="stamp"></div>
     <div><a class="btn" id="ctaHero"></a></div>
     <div class="ticks" id="ticks"></div>
@@ -332,10 +333,10 @@ const CONFIG = {
   linkBotao: "#kits",
 
   // --- Mídias (troque pelos arquivos do seu projeto, ex.: "/foto1.jpg") ---
-  imagemHero: "/20251103-193131prok2d1x.png",
+  imagemHero: "/foto-topo.webp",
   tituloMidia: "PROTEJA O SEU BEM MAIS PRECIOSO, A SUA VISÃO!",
   midias: [
-    "https://oculos-inteligente.online/wp-content/uploads/2025/12/ezgif-com-gif-maker-1.gif",
+    "/produto-demo.mp4",
     "https://oculos-inteligente.online/wp-content/uploads/2025/12/Screenshot_6_480x480.webp"
   ],
   tituloVideos: "Quem comprou, aprovou!",
@@ -456,7 +457,14 @@ $("expNote").textContent = CONFIG.notaExpect;
 
 if (CONFIG.midias.length) {
   $("mediaTitle").textContent = CONFIG.tituloMidia;
-  $("media").innerHTML = CONFIG.midias.map(u => '<img src="' + esc(u) + '" alt="" width="480" height="480" loading="lazy" decoding="async">').join("");
+  $("media").innerHTML = CONFIG.midias.map(u => /\.(mp4|webm)$/i.test(u)
+    ? '<video class="loopvid" src="' + esc(u) + '" muted loop playsinline preload="none" width="480" height="434" aria-label="Demonstração do produto"></video>'
+    : '<img src="' + esc(u) + '" alt="" width="480" height="480" loading="lazy" decoding="async">').join("");
+  // Vídeos curtos em repetição (no lugar de GIF): tocam quando aparecem na tela
+  const lio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.muted = true; e.target.play().catch(() => {}); } else e.target.pause();
+  }), { threshold: 0.3 });
+  document.querySelectorAll(".loopvid").forEach(v => lio.observe(v));
 } else $("mediaSec").hidden = true;
 
 if (CONFIG.videos.length) {
