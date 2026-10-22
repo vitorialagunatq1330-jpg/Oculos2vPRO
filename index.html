@@ -12,12 +12,14 @@
   gtag('js', new Date());
   gtag('config', 'AW-18511906715');
 </script>
+<link rel="preload" as="image" href="/20251103-193131prok2d1x.png" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;600;700&display=swap"></noscript>
 <style>
 :root{--ink:#0b1f3a;--cy:#19c3d6;--go:#16a34a;--goD:#0e7a35;--soft:#eef6f8;--line:#d3e3e8;--mute:#47607a;--warn:#fff4d6;
---display:"Bricolage Grotesque","Arial Black",Arial,sans-serif;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+--display:"Bricolage Grotesque",Arial,sans-serif;--body:"Figtree",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--body);color:var(--ink);line-height:1.55;font-size:18px;padding-bottom:80px;background:#fff}
@@ -42,7 +44,7 @@ section{padding:60px 0}
 .btn small{display:block;font:600 13px var(--body);opacity:.92;margin-top:2px}
 .ticks{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin-top:18px;font-weight:600;font-size:15px}
 .herovis{position:relative;max-width:520px;margin:28px auto 0}
-.heroimg{border-radius:26px;overflow:hidden;border:4px solid var(--cy);background:#fff}
+.heroimg{aspect-ratio:1;border-radius:26px;overflow:hidden;border:4px solid var(--cy);background:#fff}
 .seal{position:absolute;right:-6px;top:-18px;width:112px;height:112px;border-radius:50%;background:linear-gradient(135deg,#ffb800,#ff7a00);color:#3a2300;display:grid;place-items:center;text-align:center;font:800 15px/1.1 var(--display);transform:rotate(12deg);box-shadow:0 6px 18px rgba(0,0,0,.35);border:3px solid #fff}
 .trust{background:var(--cy);color:var(--ink);display:flex;flex-wrap:wrap;justify-content:center;gap:8px 28px;padding:14px 16px;font-weight:800;font-size:15px}
 .dark{background:linear-gradient(160deg,#071a33 0%,#0b2f5c 60%,#0d4a8a 100%);color:#fff}
@@ -83,7 +85,7 @@ section{padding:60px 0}
 .expect li{margin:6px 0 6px 20px}
 .media{display:grid;gap:16px;margin-top:26px}
 @media(min-width:700px){.media{grid-template-columns:repeat(2,1fr)}}
-.media img{border-radius:18px;width:100%;border:2px solid var(--line)}
+.media img{border-radius:18px;width:100%;height:auto;border:2px solid var(--line)}
 .vids{display:grid;gap:14px;margin-top:26px;grid-template-columns:repeat(2,1fr)}
 @media(min-width:800px){.vids{grid-template-columns:repeat(4,1fr)}}
 .vwrap{position:relative}
@@ -96,7 +98,7 @@ section{padding:60px 0}
 .fit ul{list-style:none;padding:0;display:grid;gap:10px}
 .fit li::before{content:"✔ ";color:var(--go);font-weight:800}
 .fit .no{background:var(--soft);border-radius:14px;padding:16px;margin-top:16px;font-size:15px}
-.fit img{border-radius:18px;width:100%}
+.fit img{border-radius:18px;width:100%;height:auto}
 .kitgrid{display:grid;gap:18px;margin-top:28px}
 @media(min-width:800px){.kitgrid{grid-template-columns:repeat(3,1fr)}}
 .kit{color:var(--ink);background:#fff;border:3px solid var(--line);border-radius:22px;padding:26px 22px;text-align:center;position:relative;display:flex;flex-direction:column;gap:6px}
@@ -141,7 +143,7 @@ footer a{color:#fff}
   <div class="wrap">
     <h1 id="headline"></h1>
     <p class="sub" id="subheadline"></p>
-    <div class="herovis"><div class="heroimg" id="heroimg"></div><div class="seal" id="seal"></div></div>
+    <div class="herovis"><div class="heroimg" id="heroimg"><img src="/20251103-193131prok2d1x.png" alt="Óculos inteligente" width="600" height="600" fetchpriority="high" decoding="async"></div><div class="seal" id="seal"></div></div>
     <div class="stamp" id="stamp"></div>
     <div><a class="btn" id="ctaHero"></a></div>
     <div class="ticks" id="ticks"></div>
@@ -341,10 +343,10 @@ const CONFIG = {
   textoSom: "🔊 Ativar o som",
   subVideos: "Entrega rápida com pagamento somente na entrega. Veja o que clientes reais estão dizendo.",
   videos: [
-    "/depoismentos%20(1).mp4",
-    "/depoismentos%20(2).mp4",
-    "/depoismentos%20(3).mp4",
-    "/depoismentos%20(4).mp4"
+    "/depoimento1.mp4",
+    "/depoimento2.mp4",
+    "/depoimento3.mp4",
+    "/depoimento4.mp4"
   ],
 
   // --- Pagamento na entrega (o grande destaque) ---
@@ -437,7 +439,7 @@ $("subheadline").textContent = CONFIG.subtitulo;
 });
 $("stickyText").innerHTML = "Pague só na entrega<span>Frete grátis</span>";
 $("ticks").innerHTML = CONFIG.ticks.map(t => "<span>" + esc(t) + "</span>").join("");
-$("heroimg").innerHTML = '<img src="' + esc(CONFIG.imagemHero) + '" alt="Óculos inteligente">';
+{ const hi = $("heroimg").querySelector("img"); if (hi.getAttribute("src") !== CONFIG.imagemHero) hi.src = CONFIG.imagemHero; }
 
 $("codTitle").textContent = CONFIG.tituloPagamento;
 $("codLead").textContent = CONFIG.subPagamento;
@@ -454,14 +456,14 @@ $("expNote").textContent = CONFIG.notaExpect;
 
 if (CONFIG.midias.length) {
   $("mediaTitle").textContent = CONFIG.tituloMidia;
-  $("media").innerHTML = CONFIG.midias.map(u => '<img src="' + esc(u) + '" alt="" loading="lazy">').join("");
+  $("media").innerHTML = CONFIG.midias.map(u => '<img src="' + esc(u) + '" alt="" width="480" height="480" loading="lazy" decoding="async">').join("");
 } else $("mediaSec").hidden = true;
 
 if (CONFIG.videos.length) {
   $("vidTitle").textContent = CONFIG.tituloVideos;
   $("vidLead").textContent = CONFIG.subVideos;
   $("vidSound").textContent = CONFIG.avisoSom;
-  $("vids").innerHTML = CONFIG.videos.map(u => '<div class="vwrap"><video src="' + esc(u) + '" controls muted loop playsinline preload="metadata"></video><button type="button" class="vsound">' + esc(CONFIG.textoSom) + "</button></div>").join("");
+  $("vids").innerHTML = CONFIG.videos.map(u => '<div class="vwrap"><video src="' + esc(u) + '" controls muted loop playsinline preload="none"></video><button type="button" class="vsound">' + esc(CONFIG.textoSom) + "</button></div>").join("");
   // Começa sem som; o botão liga o som e reinicia o vídeo do começo
   document.querySelectorAll("#vids .vwrap").forEach(w => {
     const v = w.querySelector("video"), b = w.querySelector("button");
@@ -479,7 +481,7 @@ if (CONFIG.videos.length) {
 $("fitTitle").textContent = CONFIG.tituloServe;
 $("fitList").innerHTML = CONFIG.serve.map(s => "<li>" + esc(s) + "</li>").join("");
 $("fitNo").textContent = CONFIG.naoServe;
-$("fitImg").innerHTML = CONFIG.imagemServe ? '<img src="' + esc(CONFIG.imagemServe) + '" alt="" loading="lazy">' : "";
+$("fitImg").innerHTML = CONFIG.imagemServe ? '<img src="' + esc(CONFIG.imagemServe) + '" alt="" width="480" height="480" loading="lazy" decoding="async">' : "";
 
 $("kitsTitle").textContent = CONFIG.tituloKits;
 $("kitsLead").textContent = CONFIG.subKits;
