@@ -4,14 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Óculos Inteligente | Pague só na entrega</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18511906715"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-18511906715');
-</script>
 <link rel="preload" as="image" href="/foto-topo.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,6 +47,12 @@ section{padding:60px 0}
 .ribbon{display:inline-block;position:relative;z-index:2;margin:-22px auto 18px;background:linear-gradient(135deg,#ffe27a,#ff9a00);color:#3a2300;font:800 18px var(--display);letter-spacing:.03em;padding:10px 40px;clip-path:polygon(0 0,100% 0,calc(100% - 16px) 50%,100% 100%,0 100%,16px 50%)}
 .eseal{background:linear-gradient(135deg,#19c3d6,#0d8fb0);color:#fff}
 .expert{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap;background:var(--soft);border-radius:20px;padding:24px;max-width:760px;margin:0 auto;text-align:left}
+.countdown{display:inline-block;background:#fff;color:var(--ink);border-radius:16px;padding:12px 24px;margin-top:18px;font-weight:800;text-align:center}
+.cdtime{font:800 38px/1.1 var(--display);color:#b42318;letter-spacing:.04em}
+.cdbar{background:#fff4d6;color:#4a3a00;text-align:center;font-weight:800;padding:9px 12px;font-size:clamp(15px,3.6vw,19px)}
+.cdbar b{color:#b42318;font-variant-numeric:tabular-nums;font-size:1.15em}
+.cdmini{display:inline-block;margin-top:12px;background:#fff4d6;color:#4a3a00;border-radius:99px;padding:6px 18px;font-weight:800;font-size:16px}
+.cdmini b{color:#b42318;font-variant-numeric:tabular-nums}
 .ctaw{margin-top:30px;text-align:center}
 .urg{margin-top:16px;background:#b42318;color:#fff;border-radius:14px;padding:14px 16px;text-align:center;font-weight:800;line-height:1.3}
 .urg div:first-child{font-size:19px}
@@ -139,6 +137,7 @@ footer a{color:#fff}
 <body>
 
 <div class="bar" id="topbar"></div>
+<div class="cdbar" id="cdBar" hidden></div>
 
 <header class="hero">
   <div class="wrap">
@@ -146,7 +145,7 @@ footer a{color:#fff}
     <p class="sub" id="subheadline"></p>
     <div class="herovis"><div class="heroimg" id="heroimg"><img src="/foto-topo.webp" alt="Óculos inteligente" width="354" height="355" fetchpriority="high" decoding="async"></div><div class="seal" id="seal"></div></div>
     <div class="stamp" id="stamp"></div>
-    <div><a class="btn" id="ctaHero"></a></div>
+    <div><a class="btn" id="ctaHero"></a><div class="cdmini" hidden></div></div>
     <div class="ticks" id="ticks"></div>
   </div>
 </header>
@@ -232,6 +231,7 @@ footer a{color:#fff}
     </div>
     <h2 id="kitsTitle"></h2>
     <p class="lead" id="kitsLead"></p>
+    <div class="countdown" id="countdown" hidden><div id="cdText"></div><div class="cdtime" id="cdTime"></div></div>
     <div class="kitgrid" id="kitgrid"></div>
   </div>
 </section>
@@ -329,10 +329,6 @@ const CONFIG = {
   ],
   notaExpect: "Importante: o 2V Pro não substitui óculos de grau prescritos por oftalmologista.",
 
-  // --- Google Ads: conversão ao clicar em um kit (ida ao checkout) ---
-  // Cole aqui o valor "send_to" do snippet de evento do Google Ads. Ex.: "AW-123456789/AbCdEfGhIjKlMnOp"
-  googleConversaoCheckout: "AW-18511906715/oDifCJzN4qIdEJuPlftE",
-
   // Link dos botões grandes. "#kits" rola até as ofertas. Ou coloque o link do seu checkout.
   linkBotao: "#kits",
 
@@ -382,6 +378,19 @@ const CONFIG = {
   // --- Ofertas (cada uma leva para o seu link de checkout) ---
   tituloKits: "Escolha seu kit e pague só na entrega",
   subKits: "Todas as opções com frete grátis e pagamento ao receber.",
+  // Promoção de X minutos para cada visitante (começa quando ele abre a página).
+  // SÓ FUNCIONA DE VERDADE se cada kit tiver "precoNormal" (maior que o preço promocional) e "linkNormal"
+  // (checkout já com o preço normal). Depois do tempo, a página passa a mostrar esses preços e links.
+  // Se faltar algum, o cronômetro NÃO aparece (para não prometer o que não acontece). 0 = desligado.
+  promoMinutos: 15,
+  textoPromo: "⏳ O preço promocional deste acesso termina em:",
+  textoPromoFim: "O preço promocional deste acesso terminou. Os kits voltaram ao preço normal.",
+
+  // Cronômetro: só aparece se você preencher uma data e hora FUTURAS em que a oferta realmente termina.
+  // Formato: "2026-10-30T23:59:00-03:00" (ano-mês-diaTHH:MM:SS-03:00, horário de Brasília). Vazio = não aparece.
+  // Quando o prazo chegar, o cronômetro some sozinho. Só use se, depois dessa hora, o preço ou o frete grátis mudarem de verdade.
+  ofertaAte: "",
+  textoContagem: "⏳ A oferta com frete grátis termina em:",
   tituloAtencao: "⚠️ ATENÇÃO ANTES DE PEDIR",
   listaAtencao: [
     "Agende a entrega para um dia em que alguém esteja em casa para efetuar o pagamento.",
@@ -394,9 +403,9 @@ const CONFIG = {
   avisoPromo: "",   // Só preencha se a promoção realmente tiver prazo. Ex.: "Preço promocional válido até 30/10."
   moeda: "R$",
   kits: [
-    { nome: "1 Óculos",  preco: 149.90, precoDe: 0, destaque: "",                  link: "https://entrega.logzz.com.br/pay/mem08e5mg/1-unidade-oculos-2v-pro-p" },
-    { nome: "2 Óculos",  preco: 189.90, precoDe: 0, destaque: "🔥 MAIS VENDIDO",   link: "https://entrega.logzz.com.br/pay/mem08e5mg/xzmjh-2-unidades-oculos-2v-pro" },
-    { nome: "3 Óculos",  preco: 229.90, precoDe: 0, destaque: "⭐ MELHOR PREÇO",   link: "https://entrega.logzz.com.br/pay/mem08e5mg/3-unidades-oculos-2v-pro-" }
+    { nome: "1 Óculos",  preco: 149.90, precoDe: 0, precoNormal: 0, linkNormal: "", destaque: "",                  link: "https://entrega.logzz.com.br/pay/mem08e5mg/1-unidade-oculos-2v-pro-p" },
+    { nome: "2 Óculos",  preco: 189.90, precoDe: 0, precoNormal: 0, linkNormal: "", destaque: "🔥 MAIS VENDIDO",   link: "https://entrega.logzz.com.br/pay/mem08e5mg/xzmjh-2-unidades-oculos-2v-pro" },
+    { nome: "3 Óculos",  preco: 229.90, precoDe: 0, precoNormal: 0, linkNormal: "", destaque: "⭐ MELHOR PREÇO",   link: "https://entrega.logzz.com.br/pay/mem08e5mg/3-unidades-oculos-2v-pro-" }
   ],
   botaoKit: "Quero este e pagar na entrega",
 
@@ -497,10 +506,19 @@ $("fitImg").innerHTML = CONFIG.imagemServe ? '<img src="' + esc(CONFIG.imagemSer
 
 $("kitsTitle").textContent = CONFIG.tituloKits;
 $("kitsLead").textContent = CONFIG.subKits;
-$("kitgrid").innerHTML = CONFIG.kits.map(k =>
-  '<div class="kit' + (k.destaque ? " top" : "") + '">' + (k.destaque ? '<span class="badge">' + esc(k.destaque) + "</span>" : "") +
-  "<h3>" + esc(k.nome) + '</h3><div class="old">' + (k.precoDe > k.preco ? fmt(k.precoDe) : "") + '</div><div class="p">' + fmt(k.preco) +
-  '</div><div class="pay">Pague só na entrega · Frete grátis</div><a class="btn" href="' + esc(k.link) + '">' + esc(CONFIG.botaoKit) + "</a></div>").join("");
+const promoReal = CONFIG.promoMinutos > 0 && CONFIG.kits.every(k => k.precoNormal > k.preco && k.linkNormal);
+let promoExpirada = false;
+function renderKits() {
+  $("kitgrid").innerHTML = CONFIG.kits.map(k => {
+    const preco = promoExpirada ? k.precoNormal : k.preco;
+    const link = promoExpirada ? k.linkNormal : k.link;
+    const antigo = promoExpirada ? "" : (promoReal ? fmt(k.precoNormal) : (k.precoDe > k.preco ? fmt(k.precoDe) : ""));
+    return '<div class="kit' + (k.destaque ? " top" : "") + '">' + (k.destaque ? '<span class="badge">' + esc(k.destaque) + "</span>" : "") +
+      "<h3>" + esc(k.nome) + '</h3><div class="old">' + antigo + '</div><div class="p">' + fmt(preco) +
+      '</div><div class="pay">Pague só na entrega · Frete grátis</div><a class="btn" href="' + esc(link) + '">' + esc(CONFIG.botaoKit) + "</a></div>";
+  }).join("");
+}
+renderKits();
 
 if (CONFIG.depoimentos.length) {
   $("quoteTitle").textContent = CONFIG.tituloDepoimentos;
@@ -537,15 +555,47 @@ document.querySelectorAll(".cta2").forEach(a => {
   a.innerHTML = esc(CONFIG.botao2) + "<small>" + esc(CONFIG.botao2Sub) + "</small>";
 });
 
-document.addEventListener("click", e => {
-  const a = e.target.closest(".kit a.btn");
-  if (!a || !window.gtag || !CONFIG.googleConversaoCheckout) return;
-  e.preventDefault();
-  let done = false;
-  const go = () => { if (!done) { done = true; window.location.href = a.href; } };
-  gtag("event", "conversion", { send_to: CONFIG.googleConversaoCheckout, event_callback: go });
-  setTimeout(go, 800);
-});
+if (promoReal) {
+  document.querySelectorAll(".ctaw").forEach(p => { const d = document.createElement("div"); d.className = "cdmini"; d.hidden = true; p.appendChild(d); });
+  let inicio = Date.now();
+  try {
+    const v = Number(localStorage.getItem("promoInicio"));
+    if (v > 0 && Date.now() - v < 864e5) inicio = v; else localStorage.setItem("promoInicio", String(inicio));
+  } catch (e) {}
+  const fim = inicio + CONFIG.promoMinutos * 60000, p2 = n => String(n).padStart(2, "0");
+  const tickP = () => {
+    const left = fim - Date.now();
+    if (left <= 0) {
+      promoExpirada = true; renderKits();
+      document.querySelectorAll(".cdmini").forEach(el => el.hidden = true);
+      $("countdown").hidden = true;
+      $("cdBar").textContent = CONFIG.textoPromoFim; $("cdBar").hidden = false;
+      return false;
+    }
+    const t = p2(Math.floor(left / 60000)) + ":" + p2(Math.floor(left % 60000 / 1000));
+    document.querySelectorAll(".cdmini").forEach(el => { el.innerHTML = esc(CONFIG.textoPromo) + " <b>" + t + "</b>"; el.hidden = false; });
+    $("cdText").textContent = CONFIG.textoPromo; $("cdTime").textContent = t; $("countdown").hidden = false;
+    $("cdBar").innerHTML = esc(CONFIG.textoPromo) + " <b>" + t + "</b>"; $("cdBar").hidden = false;
+    return true;
+  };
+  if (tickP()) { const ivp = setInterval(() => { if (!tickP()) clearInterval(ivp); }, 1000); }
+}
+
+if (CONFIG.ofertaAte && !promoReal) {
+  const end = new Date(CONFIG.ofertaAte).getTime(), pad = n => String(n).padStart(2, "0");
+  const tick = () => {
+    const left = end - Date.now();
+    if (isNaN(end) || left <= 0) { $("countdown").hidden = true; $("cdBar").hidden = true; return false; }
+    const d = Math.floor(left / 864e5), h = Math.floor(left % 864e5 / 36e5), m = Math.floor(left % 36e5 / 6e4), sec = Math.floor(left % 6e4 / 1e3);
+    $("cdText").textContent = CONFIG.textoContagem;
+    $("cdTime").textContent = (d ? d + "d " : "") + pad(h) + ":" + pad(m) + ":" + pad(sec);
+    $("countdown").hidden = false;
+    $("cdBar").innerHTML = esc(CONFIG.textoContagem) + " <b>" + $("cdTime").textContent + "</b>";
+    $("cdBar").hidden = false;
+    return true;
+  };
+  if (tick()) { const iv = setInterval(() => { if (!tick()) clearInterval(iv); }, 1000); }
+}
 
 // Esconde a barra fixa enquanto as ofertas estão na tela
 new IntersectionObserver(e => $("sticky").hidden = e[0].isIntersecting).observe($("kits"));
