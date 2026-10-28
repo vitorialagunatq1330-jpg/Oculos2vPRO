@@ -71,9 +71,6 @@ footer{background:#061426;border-top:3px solid var(--cy);color:#b9cde0;text-alig
 .wafloat{position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;display:flex;align-items:center;gap:8px;background:#0e8040;color:#fff;font:800 16px var(--body);text-decoration:none;padding:12px 18px 12px 14px;border-radius:99px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 [hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
-
-/* Fundo preto somente na área do agradecimento */
-.hero.dark{background:#000}
 </style>
 
 <!-- Google tag (gtag.js) -->
@@ -129,6 +126,7 @@ footer{background:#061426;border-top:3px solid var(--cy);color:#b9cde0;text-alig
     <p class="decline"><a id="decline" href="/obrigado"></a></p>
   </div>
 </section>
+
 </main>
 
 <footer><div class="wrap" id="footer"></div></footer>
@@ -144,7 +142,6 @@ const CONFIG = {
   produto: "Resina Extreme",
   faixaTopo: "🚚 Pague só quando receber",
   tituloObrigado: "Obrigado! Seu pedido está agendado",
-  subObrigado: "Recebemos o seu pedido dos óculos e ele já está na fila de entrega. Você não pagou nada agora: o pagamento é feito somente quando o produto chegar na sua casa.",
   tituloAtencao: "⚠️ Para receber sem problemas",
   atencao: [
     "Esteja em casa, ou deixe alguém no endereço, no dia da entrega para receber o pedido e pagar.",
@@ -157,7 +154,7 @@ const CONFIG = {
   botao: "VER AS OPÇÕES",
 
   // --- Sobre o produto (preencha com informações reais; vazio = a seção some) ---
-  imagem: "/oferta/resina.webp",
+  imagem: "/oferta/resina.webp",   // foto do produto (está na mesma pasta desta página)
   tituloDescricao: "Conheça a Resina Extreme",
   descricao: "A Resina Extreme é um finalizador auto brilho em frasco de 500 ml, usado para dar o acabamento final e realçar o brilho do carro. Leia atentamente o rótulo antes de usar o produto.",
   beneficios: [
@@ -171,9 +168,9 @@ const CONFIG = {
   subKits: "Todas as opções com pagamento só na entrega.",
   moeda: "R$",
   kits: [
-    { nome: "1 unidade", qtd: 1, preco: 99.99, destaque: "", link: "https://entrega.logzz.com.br/pay/mem70xkyy/1-por-9999-entrega-garantida" },
-    { nome: "2 unidades", qtd: 2, preco: 124.99, destaque: "", link: "https://entrega.logzz.com.br/pay/mem70xkyy/2-unidades-12499" },
-    { nome: "3 unidades", qtd: 3, preco: 147.00, destaque: "MELHOR PREÇO", link: "https://entrega.logzz.com.br/pay/mem70xkyy/kqzkr-3-por-147" }
+    { nome: "1 unidade",  qtd: 1, preco: 99.99,  destaque: "",              link: "https://entrega.logzz.com.br/pay/mem70xkyy/1-por-9999-entrega-garantida" },
+    { nome: "2 unidades", qtd: 2, preco: 124.99, destaque: "",              link: "https://entrega.logzz.com.br/pay/mem70xkyy/2-unidades-12499" },
+    { nome: "3 unidades", qtd: 3, preco: 147.00, destaque: "MELHOR PREÇO",  link: "https://entrega.logzz.com.br/pay/mem70xkyy/kqzkr-3-por-147" }
   ],
   botaoKit: "Quero este e pagar na entrega",
   textoRecusa: "Não, obrigado. Quero seguir sem essa oferta.",
@@ -197,11 +194,7 @@ $("alertTitle").textContent = CONFIG.tituloAtencao;
 $("headline").textContent = CONFIG.titulo;
 $("subheadline").textContent = CONFIG.subtitulo;
 $("ctaHero").innerHTML = esc(CONFIG.botao) + "<small>Pague só quando receber</small>";
-
-if (CONFIG.imagem) {
-  $("shot").innerHTML = '<img src="' + esc(CONFIG.imagem) + '" alt="' + esc(CONFIG.produto) + '" decoding="async">';
-  $("shot").hidden = false;
-}
+if (CONFIG.imagem) { $("shot").innerHTML = '<img src="' + esc(CONFIG.imagem) + '" alt="' + esc(CONFIG.produto) + '" decoding="async">'; $("shot").hidden = false; }
 
 if (CONFIG.descricao || CONFIG.beneficios.length) {
   $("descSec").hidden = false;
@@ -209,27 +202,24 @@ if (CONFIG.descricao || CONFIG.beneficios.length) {
   $("desc").textContent = CONFIG.descricao;
   $("desc").hidden = !CONFIG.descricao;
   $("feats").innerHTML = CONFIG.beneficios.map(b =>
-    '<div class="feat"><div class="ic" aria-hidden="true">' + esc(b.icone) + "</div><h3>" + esc(b.titulo) + "</h3><p>" + esc(b.texto) + "</p></div>"
-  ).join("");
+    '<div class="feat"><div class="ic" aria-hidden="true">' + esc(b.icone) + "</div><h3>" + esc(b.titulo) + "</h3><p>" + esc(b.texto) + "</p></div>").join("");
 }
 
 $("kitsTitle").textContent = CONFIG.tituloKits;
 $("kitsLead").textContent = CONFIG.subKits;
-const base = CONFIG.kits[0].preco / CONFIG.kits[0].qtd;
-
+const base = CONFIG.kits[0].preco / CONFIG.kits[0].qtd;   // preço unitário da oferta de 1 unidade
 $("kitgrid").innerHTML = CONFIG.kits.map(k => {
   const cada = Math.round(k.preco / k.qtd * 100) / 100;
   const eco = base * k.qtd - k.preco;
-  return '<div class="kit' + (k.destaque ? " top" : "") + '">' +
-    (k.destaque ? '<span class="badge">' + esc(k.destaque) + "</span>" : "") +
+  return '<div class="kit' + (k.destaque ? " top" : "") + '">' + (k.destaque ? '<span class="badge">' + esc(k.destaque) + "</span>" : "") +
     "<h3>" + esc(k.nome) + '</h3><div class="p">' + fmt(k.preco) + '</div>' +
     '<div class="each">' + (k.qtd > 1 ? "cerca de " + fmt(cada) + " cada" : "&nbsp;") + '</div>' +
     '<div class="save">' + (eco > 0.005 ? "Você economiza " + fmt(eco) : "&nbsp;") + '</div>' +
     '<div class="pay">Pague só na entrega</div><a class="btn" href="' + esc(k.link) + '">' + esc(CONFIG.botaoKit) + "</a></div>";
 }).join("");
-
 $("decline").textContent = CONFIG.textoRecusa;
 $("decline").href = CONFIG.linkRecusa;
+
 $("alertList").innerHTML = CONFIG.atencao.map(t => "<li>" + esc(t) + "</li>").join("");
 $("footer").textContent = CONFIG.rodape;
 $("waFloat").href = CONFIG.whatsappLink;
